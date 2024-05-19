@@ -45,33 +45,21 @@ namespace Wacki.IndentSurface
             DrawAt(x * targetTexture.width, y * targetTexture.height, 1.0f);
         }
 
-        // void Update()
-        // {
-        //     if (Camera.main == null)
-        //         return;
-        // 
-        //     bool draw = false;
-        //     float drawThreshold = 0.01f;
-        // 
-        //     RaycastHit hit;
-        //     if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
-        //     {
-        //         if (hit.collider.gameObject != gameObject)
-        //             return;
-        //     }
-        // 
-        //     // force a draw on mouse down
-        //     draw = Input.GetMouseButtonDown(0);
-        //     // set draggin state
-        //     _mouseDrag = Input.GetMouseButton(0);
-        //     
-        // 
-        //     if (_mouseDrag && (draw || Vector3.Distance(hit.point, _prevMousePosition) > drawThreshold))
-        //     {
-        //         _prevMousePosition = hit.point;
-        //         IndentAt(hit);
-        //     }
-        // }
+        void Update()
+        {
+            if (Camera.main == null)
+                return;
+
+            bool draw = false;
+            float drawThreshold = 0.01f;
+
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                if (hit.collider.gameObject != gameObject)
+                    return;
+            }
+        }
 
         /// <summary>
         /// todo:   it would probably be a bit more straight forward if we didn't use Graphics.DrawTexture
