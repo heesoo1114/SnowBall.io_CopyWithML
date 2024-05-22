@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    [SerializeField] private Transform playerTransform;
+    public Transform PlayerTransform => playerTransform;
+
     private void Awake()
     {
         Init();   
@@ -13,5 +16,6 @@ public class GameManager : MonoSingleton<GameManager>
     {
         // 매니저들을 초기화 합니다.
         PoolManager.Instance.Init();
+        InputHandler.Instance.Init();
     }
 }

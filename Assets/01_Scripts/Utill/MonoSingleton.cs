@@ -36,6 +36,11 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 
     private void OnDestroy()
     {
+
+    }
+
+    private void OnApplicationQuit()
+    {
         isQuitting = true;
         instance = null;
     }

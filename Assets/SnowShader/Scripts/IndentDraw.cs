@@ -50,15 +50,15 @@ namespace Wacki.IndentSurface
             if (Camera.main == null)
                 return;
 
-            bool draw = false;
-            float drawThreshold = 0.01f;
-
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
-            {
-                if (hit.collider.gameObject != gameObject)
-                    return;
-            }
+            // bool draw = false;
+            // float drawThreshold = 0.01f;
+            // 
+            // RaycastHit hit;
+            // if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            // {
+            //     if (hit.collider.gameObject != gameObject)
+            //         return;
+            // }
         }
 
         /// <summary>
