@@ -1,10 +1,12 @@
 using UnityEngine;
 
-public class AgentContoller : MonoBehaviour
+public class AgentContoller : MonoBehaviour, IImpactable
 {
     private Rigidbody _rigidbody;
     private Collider _collider;
     private Animator _animator;
+
+    private readonly string snowBallPoolId = "SnowBall";
 
     #region MovementProperty
 
@@ -109,7 +111,7 @@ public class AgentContoller : MonoBehaviour
     private void CreateSnowBall()
     {
         // ´«µ¢ÀÌ¸¦ »ý¼ºÇÕ´Ï´Ù.
-        mySnowBall = PoolManager.Instance.Pop("SnowBall") as SnowBall;
+        mySnowBall = PoolManager.Instance.Pop(snowBallPoolId) as SnowBall;
         mySnowBall.transform.parent = snowBallHolderTransform;
         mySnowBall.transform.localPosition = Vector3.zero;
     }
@@ -119,10 +121,17 @@ public class AgentContoller : MonoBehaviour
         // ±¼¸®°í ÀÖ´Â ´«µ¢ÀÌ¸¦ ¹ß»çÇÕ´Ï´Ù.
         if (mySnowBall != null)
         {
-            mySnowBall.Throw();
+            mySnowBall.Throw(transform.forward);
         }
     }
 
     #endregion
+
+    public void OnImpact(Vector3 dir, float forceValue)
+    {
+        _rigidbody.AddForce(dir * forceValue, ForceMode.Impulse);
+
+        // Effects
+    }
 
 }
