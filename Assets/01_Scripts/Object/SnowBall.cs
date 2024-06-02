@@ -10,15 +10,23 @@ public class SnowBall : PoolableMono
     private Vector3 initPosition;
     private Vector3 worldRightDirection = Vector3.right;
 
+    private int initLayer;
+    private int newLayer;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+
+        initLayer = LayerMask.NameToLayer("SnowBall");
+        newLayer = LayerMask.NameToLayer("OthersSnowBall");
+
         initPosition = transform.position;
     }
 
     public override void OnPop()
     {
         _rigidbody.isKinematic = true;
+        gameObject.layer = initLayer;
         transform.position = initPosition;
     }
 
@@ -49,14 +57,20 @@ public class SnowBall : PoolableMono
         transform.parent = null;
         _rigidbody.isKinematic = false;
         _rigidbody.AddForce(dir * moveSpeed);
+
+        this.GiveDelayWithAction(0.5f, () =>
+        {
+            gameObject.layer = newLayer;
+        });
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.TryGetComponent(out IImpactable impactObject))
         {
-            Vector3 reverseImpactDir = collision.contacts[0].normal * -1;
-            impactObject.OnImpact(reverseImpactDir, transform.localScale.x);
+            Vector3 reverseImpactDir = -collision.contacts[0].normal;
+            reverseImpactDir.y += 1; // y√‡ »˚
+            impactObject.OnImpact(reverseImpactDir, transform.localScale.x * 3);
 
             PoolManager.Instance.Push(this);
         }

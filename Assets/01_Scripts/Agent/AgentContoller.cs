@@ -7,6 +7,8 @@ public class AgentContoller : MonoBehaviour, IImpactable
     private Animator _animator;
 
     private readonly string snowBallPoolId = "SnowBall";
+    private readonly int isMoveHash = Animator.StringToHash("isMove");
+    private readonly int isFlyingHash = Animator.StringToHash("isFlying");
 
     #region MovementProperty
 
@@ -19,6 +21,7 @@ public class AgentContoller : MonoBehaviour, IImpactable
 
     private Vector3 moveVelocity;
     private bool isMoveInputIn => (moveVelocity.sqrMagnitude >= threshold);
+    private bool isGrounded;
 
     #endregion
 
@@ -52,7 +55,7 @@ public class AgentContoller : MonoBehaviour, IImpactable
         // 조이스틱을 움직이지 않는다면 바로 멈춥니다.
         if (velocity == Vector3.zero)
         {
-            _rigidbody.velocity = velocity;
+            _rigidbody.velocity = Vector3.zero;
         }
         moveVelocity = velocity;
     }
@@ -70,8 +73,11 @@ public class AgentContoller : MonoBehaviour, IImpactable
         _rigidbody.MoveRotation(moveQuat);
     }
 
+    // 땅에서 움직임을 시작했는지 멈췄는지 검사하고 그에 맞는 행동을 취합니다.
     private void MoveCheck()
     {
+        if (false == isGrounded) return;
+
         Vector3 currentVelocity = _rigidbody.velocity;
 
         // 입력을 받지 않고 있던 상태에서 입력을 받는 상태로 변하는지 확인합니다.
@@ -92,7 +98,7 @@ public class AgentContoller : MonoBehaviour, IImpactable
 
     public void BeginMove()
     {
-        _animator.SetBool("isMove", true);
+        _animator.SetBool(isMoveHash, true);
 
         // 눈덩이를 생성합니다.
         CreateSnowBall();
@@ -100,7 +106,7 @@ public class AgentContoller : MonoBehaviour, IImpactable
 
     public void EndMove()
     {
-        _animator.SetBool("isMove", false);
+        _animator.SetBool(isMoveHash, false);
 
         // 굴리고 있는 눈덩이를 발사합니다.
         ThrowSnowBall();
@@ -130,8 +136,27 @@ public class AgentContoller : MonoBehaviour, IImpactable
     public void OnImpact(Vector3 dir, float forceValue)
     {
         _rigidbody.AddForce(dir * forceValue, ForceMode.Impulse);
+        isGrounded = false;
+        _animator.SetBool(isFlyingHash, true);
 
         // Effects
+    }
+
+    private void Land()
+    {
+        isGrounded = true;
+        _rigidbody.velocity = Vector3.zero;
+        _animator.SetBool(isFlyingHash, false);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isGrounded) return;
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Land();
+        }
     }
 
 }

@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: SnowBall
-  moveSpeed: 250
-  rotateSpeed: 250
+  moveSpeed: 300
+  rotateSpeed: 350
 --- !u!1001 &355073344619280483
 PrefabInstance:
   m_ObjectHideFlags: 0
