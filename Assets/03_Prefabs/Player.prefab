@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.3
-  moveSpeed: 1.5
-  rotateSpeed: 0.2
+  moveSpeed: 2
+  rotateSpeed: 0.1
 --- !u!1 &7327772872360073467
 GameObject:
   m_ObjectHideFlags: 0

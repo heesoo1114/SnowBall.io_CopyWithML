@@ -11,6 +11,8 @@ public class SnowBall : PoolableMono
     private Vector3 initPosition;
     private Vector3 worldRightDirection = Vector3.right;
 
+    private Vector3 initScale;
+
     [Header("ImpactForce")]
     [SerializeField] private float maxImpactForceY;
 
@@ -24,14 +26,16 @@ public class SnowBall : PoolableMono
         initLayer = LayerMask.NameToLayer("SnowBall");
         newLayer = LayerMask.NameToLayer("OthersSnowBall");
 
-        initPosition = transform.position;
+        initPosition = transform.localPosition;
+        initScale = transform.localScale;
     }
 
     public override void OnPop()
     {
         _rigidbody.isKinematic = true;
         gameObject.layer = initLayer;
-        transform.position = initPosition;
+        transform.localPosition = initPosition;
+        transform.localScale = Vector3.one;
     }
 
     public override void OnPush()
@@ -61,11 +65,7 @@ public class SnowBall : PoolableMono
         transform.parent = null;
         _rigidbody.isKinematic = false;
         _rigidbody.AddForce(dir * moveSpeed);
-
-        this.GiveDelayWithAction(0.5f, () =>
-        {
-            gameObject.layer = newLayer;
-        });
+        gameObject.layer = newLayer;
     }
 
     private void OnCollisionEnter(Collision collision)
