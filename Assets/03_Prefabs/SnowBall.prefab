@@ -81,8 +81,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.325
+  m_Center: {x: 0, y: -0.005, z: 0}
 --- !u!114 &2275486144209930582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   Id: SnowBall
   moveSpeed: 300
   rotateSpeed: 350
+  maxImpactForceY: 4
 --- !u!1001 &355073344619280483
 PrefabInstance:
   m_ObjectHideFlags: 0

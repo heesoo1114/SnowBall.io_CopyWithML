@@ -4,11 +4,15 @@ public class SnowBall : PoolableMono
 {
     private Rigidbody _rigidbody;
 
+    [Header("Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotateSpeed;
 
     private Vector3 initPosition;
     private Vector3 worldRightDirection = Vector3.right;
+
+    [Header("ImpactForce")]
+    [SerializeField] private float maxImpactForceY;
 
     private int initLayer;
     private int newLayer;
@@ -48,7 +52,7 @@ public class SnowBall : PoolableMono
     private void Growing()
     {
         transform.localScale += Vector3.one * 0.0005f;
-        transform.parent.transform.localPosition += new Vector3(0, 0.0001f, 0.0001f);
+        transform.parent.transform.localPosition += new Vector3(0, 0.00015f, 0.000205f);
     }
 
     public void Throw(Vector3 dir)
@@ -69,8 +73,8 @@ public class SnowBall : PoolableMono
         if (collision.transform.TryGetComponent(out IImpactable impactObject))
         {
             Vector3 reverseImpactDir = -collision.contacts[0].normal;
-            reverseImpactDir.y += 1; // y√‡ »˚
-            impactObject.OnImpact(reverseImpactDir, transform.localScale.x * 3);
+            reverseImpactDir.y = Mathf.Clamp(transform.localScale.y, transform.localScale.y, maxImpactForceY);
+            impactObject.OnImpact(reverseImpactDir, transform.localScale.x);
 
             PoolManager.Instance.Push(this);
         }

@@ -26,6 +26,8 @@ public class AgentContoller : MonoBehaviour, IImpactable
     #endregion
 
     private Transform snowBallHolderTransform;
+    private Vector3 initHolderPosition;
+
     private SnowBall mySnowBall;
 
     private void Awake()
@@ -35,6 +37,7 @@ public class AgentContoller : MonoBehaviour, IImpactable
         _animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
 
         snowBallHolderTransform = transform.Find("SnowBallHolder");
+        initHolderPosition = snowBallHolderTransform.localPosition;
     }
 
     private void FixedUpdate()
@@ -110,6 +113,7 @@ public class AgentContoller : MonoBehaviour, IImpactable
 
         // ±¼¸®°í ÀÖ´Â ´«µ¢ÀÌ¸¦ ¹ß»çÇÕ´Ï´Ù.
         ThrowSnowBall();
+        
     }
 
     #region SnowBall
@@ -129,6 +133,7 @@ public class AgentContoller : MonoBehaviour, IImpactable
         {
             mySnowBall.Throw(transform.forward);
         }
+        snowBallHolderTransform.localPosition = initHolderPosition;
     }
 
     #endregion
