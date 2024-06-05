@@ -113,7 +113,6 @@ public class AgentContoller : MonoBehaviour, IImpactable
 
         // ±¼¸®°í ÀÖ´Â ´«µ¢ÀÌ¸¦ ¹ß»çÇÕ´Ï´Ù.
         ThrowSnowBall();
-        
     }
 
     #region SnowBall
@@ -124,6 +123,7 @@ public class AgentContoller : MonoBehaviour, IImpactable
         mySnowBall = PoolManager.Instance.Pop(snowBallPoolId) as SnowBall;
         mySnowBall.transform.parent = snowBallHolderTransform;
         mySnowBall.transform.localPosition = Vector3.zero;
+        mySnowBall.SetUp(this);
     }
 
     private void ThrowSnowBall()

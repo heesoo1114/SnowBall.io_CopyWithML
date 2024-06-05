@@ -4,6 +4,12 @@ public class SnowBall : PoolableMono
 {
     private Rigidbody _rigidbody;
 
+    private AgentContoller owner = null;
+    public void SetUp(AgentContoller controller)
+    {
+        owner = controller;
+    }
+
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotateSpeed;
@@ -19,6 +25,8 @@ public class SnowBall : PoolableMono
 
     private int initLayer;
     private int newLayer;
+
+    private bool isRolling => (transform.parent != null);
 
     private void Awake()
     {
@@ -43,14 +51,14 @@ public class SnowBall : PoolableMono
 
     public override void OnPush()
     {
-        
+        owner = null;
     }
 
     private void Update()
     {
         transform.Rotate(worldRightDirection * rotateSpeed * Time.deltaTime, Space.Self);
 
-        if (transform.parent != null)
+        if (isRolling)
         {
             Growing();
         }
@@ -78,6 +86,11 @@ public class SnowBall : PoolableMono
             Vector3 reverseImpactDir = -collision.contacts[0].normal;
             reverseImpactDir.y = Mathf.Clamp(transform.localScale.y, transform.localScale.y, maxImpactForceY);
             impactObject.OnImpact(reverseImpactDir, transform.localScale.x);
+
+            if (isRolling)
+            {
+                InputHandler.Instance.InitInput();
+            }
 
             PoolManager.Instance.Push(this);
         }

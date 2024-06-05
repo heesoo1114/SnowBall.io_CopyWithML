@@ -31,4 +31,9 @@ public class InputHandler : MonoSingleton<InputHandler>
         controller.SetVelocity(moveInput);
     }
 
+    public void InitInput()
+    {
+        joystick.InitInputAndHandle();
+    }
+
 }

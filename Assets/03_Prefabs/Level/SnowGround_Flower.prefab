@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2481064377930316737}
+  - component: {fileID: 1887422720202651447}
   m_Layer: 0
   m_Name: SnowGround_Flower
   m_TagString: Ground
@@ -41,6 +42,19 @@ Transform:
   - {fileID: 6576517640701484141}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1887422720202651447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2575693211626032282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577bcb3d0cdc75445a6215968f5ce76c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 10
 --- !u!1001 &627219024155345976
 PrefabInstance:
   m_ObjectHideFlags: 0

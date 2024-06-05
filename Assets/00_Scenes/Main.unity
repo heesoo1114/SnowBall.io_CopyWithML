@@ -319,7 +319,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 1
   blendDistance: 0
-  weight: 0.7
+  weight: 0.727
   sharedProfile: {fileID: 11400000, guid: 3228ad047863d6f4fbf2e2e42c43e4cc, type: 2}
 --- !u!4 &625842814
 Transform:
@@ -638,7 +638,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.6
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SnowGround : MonoBehaviour
@@ -23,6 +22,11 @@ public class SnowGround : MonoBehaviour
 
     private void Start()
     {
+        StartGroundFall();
+    }
+
+    public void StartGroundFall()
+    {
         StartCoroutine(GroundFallingLoop());
     }
 
@@ -30,6 +34,8 @@ public class SnowGround : MonoBehaviour
     {
         while (true)
         {
+            
+
             yield return new WaitForSeconds(delayTime);
 
             if (frontIndex != baseGroundIndex)
