@@ -8,10 +8,11 @@ public class SnowBall : PoolableMono
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotateSpeed;
 
-    private Vector3 initPosition;
     private Vector3 worldRightDirection = Vector3.right;
 
+    private Vector3 initPosition;
     private Vector3 initScale;
+    private Quaternion initRotation;
 
     [Header("ImpactForce")]
     [SerializeField] private float maxImpactForceY;
@@ -28,6 +29,7 @@ public class SnowBall : PoolableMono
 
         initPosition = transform.localPosition;
         initScale = transform.localScale;
+        initRotation = transform.localRotation;
     }
 
     public override void OnPop()
@@ -35,7 +37,8 @@ public class SnowBall : PoolableMono
         _rigidbody.isKinematic = true;
         gameObject.layer = initLayer;
         transform.localPosition = initPosition;
-        transform.localScale = Vector3.one;
+        transform.localScale = initScale;
+        transform.localRotation = initRotation;
     }
 
     public override void OnPush()
@@ -55,8 +58,8 @@ public class SnowBall : PoolableMono
 
     private void Growing()
     {
-        transform.localScale += Vector3.one * 0.0005f;
-        transform.parent.transform.localPosition += new Vector3(0, 0.00015f, 0.000205f);
+        transform.localScale += Vector3.one * 0.0014f;
+        transform.parent.transform.localPosition += new Vector3(0, 0.00043f, 0.0006f);
     }
 
     public void Throw(Vector3 dir)
