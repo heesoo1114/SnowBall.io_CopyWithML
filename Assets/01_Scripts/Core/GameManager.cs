@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
@@ -9,6 +7,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
+        SetFrameRate();
+
         Init();   
     }
 
@@ -18,5 +18,21 @@ public class GameManager : MonoSingleton<GameManager>
         PoolManager.Instance.Init();
         InputHandler.Instance.Init();
         CameraController.Instance.Init();
+    }
+
+    public void FinishGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); 
+#endif
+    }
+
+    private void SetFrameRate()
+    {
+#if UNITY_ANDROID
+        Application.targetFrameRate = 60;
+#endif
     }
 }

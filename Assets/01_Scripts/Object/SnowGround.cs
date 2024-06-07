@@ -20,10 +20,7 @@ public class SnowGround : MonoBehaviour
         backIndex = groundBlocks.Length - 1;
     }
 
-    private void Start()
-    {
-        StartGroundFall();
-    }
+    #region BattleRoyal Map System
 
     public void StartGroundFall()
     {
@@ -34,8 +31,6 @@ public class SnowGround : MonoBehaviour
     {
         while (true)
         {
-            
-
             yield return new WaitForSeconds(delayTime);
 
             if (frontIndex != baseGroundIndex)
@@ -56,4 +51,6 @@ public class SnowGround : MonoBehaviour
             }
         }
     }
+
+    #endregion
 }

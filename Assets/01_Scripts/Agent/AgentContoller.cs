@@ -3,7 +3,6 @@ using UnityEngine;
 public class AgentContoller : MonoBehaviour, IImpactable
 {
     private Rigidbody _rigidbody;
-    private Collider _collider;
     private Animator _animator;
 
     private readonly string snowBallPoolId = "SnowBall";
@@ -33,7 +32,6 @@ public class AgentContoller : MonoBehaviour, IImpactable
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _collider = GetComponent<Collider>();
         _animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
 
         snowBallHolderTransform = transform.Find("SnowBallHolder");

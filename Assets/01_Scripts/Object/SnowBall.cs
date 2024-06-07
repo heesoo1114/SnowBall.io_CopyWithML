@@ -66,8 +66,8 @@ public class SnowBall : PoolableMono
 
     private void Growing()
     {
-        transform.localScale += Vector3.one * 0.0014f;
-        transform.parent.transform.localPosition += new Vector3(0, 0.00043f, 0.0006f);
+        transform.localScale += Vector3.one * 0.0015f;
+        transform.parent.transform.localPosition += new Vector3(0, 0.00043f, 0.00066f);
     }
 
     public void Throw(Vector3 dir)
