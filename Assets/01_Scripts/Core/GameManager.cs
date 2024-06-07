@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    [SerializeField] private Transform playerTransform;
+    private Transform playerTransform;
     public Transform PlayerTransform => playerTransform;
 
     private void Awake()
@@ -10,6 +10,11 @@ public class GameManager : MonoSingleton<GameManager>
         SetFrameRate();
 
         Init();   
+    }
+
+    private void Start()
+    {
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public override void Init()

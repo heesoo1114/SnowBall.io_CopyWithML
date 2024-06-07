@@ -8,9 +8,18 @@ public class SnowArea : MonoBehaviour
     [SerializeField] private float limitScaleSize;
     private Vector3 initScaleSize;
 
+    [SerializeField] private GameObject agentObject;
+    private Transform agentParentTransform;
+
+    private void Awake()
+    {
+        agentParentTransform = transform.parent.Find("Agents");
+    }
+
     private void Start()
     {
         initScaleSize = transform.localScale;
+        InitArea();
 
         StartGroundSmaller();
     }
@@ -18,6 +27,10 @@ public class SnowArea : MonoBehaviour
     public void InitArea()
     {
         transform.localScale = initScaleSize;
+        for (int i = 0; i < 3; i++)
+        {
+            Instantiate(agentObject, agentParentTransform);
+        }
     }
 
     public void StartGroundSmaller()

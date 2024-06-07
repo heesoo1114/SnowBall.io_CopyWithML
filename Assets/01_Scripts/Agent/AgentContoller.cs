@@ -121,7 +121,6 @@ public class AgentContoller : MonoBehaviour, IImpactable
         mySnowBall = PoolManager.Instance.Pop(snowBallPoolId) as SnowBall;
         mySnowBall.transform.parent = snowBallHolderTransform;
         mySnowBall.transform.localPosition = Vector3.zero;
-        mySnowBall.SetUp(this);
     }
 
     private void ThrowSnowBall()

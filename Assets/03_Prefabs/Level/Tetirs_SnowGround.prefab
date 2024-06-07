@@ -405,6 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   limitScaleSize: 0.7
+  agentObject: {fileID: 2423249133448198566, guid: 9d566260c5c942d4eb13e058e92117a5, type: 3}
 --- !u!1 &8981669554650158198
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,14 +1,11 @@
+using Unity.MLAgents;
 using UnityEngine;
 
 public class SnowBall : PoolableMono
 {
     private Rigidbody _rigidbody;
 
-    private AgentContoller owner = null;
-    public void SetUp(AgentContoller controller)
-    {
-        owner = controller;
-    }
+    private SnowBallAgent owner = null;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
@@ -42,6 +39,11 @@ public class SnowBall : PoolableMono
 
     public override void OnPop()
     {
+        if (transform.parent.parent.TryGetComponent(out SnowBallAgent agent))
+        {
+            owner = agent;
+        }
+
         _rigidbody.isKinematic = true;
         gameObject.layer = initLayer;
         transform.localPosition = initPosition;
@@ -68,6 +70,7 @@ public class SnowBall : PoolableMono
     {
         transform.localScale += Vector3.one * 0.0015f;
         transform.parent.transform.localPosition += new Vector3(0, 0.00043f, 0.00066f);
+        owner.GiveReward(0.01f);
     }
 
     public void Throw(Vector3 dir)
@@ -92,6 +95,13 @@ public class SnowBall : PoolableMono
                 InputHandler.Instance.InitInput();
             }
 
+            owner.GiveReward(1f);
+            PoolManager.Instance.Push(this);
+        }
+        
+        if (collision.transform.CompareTag("Water"))
+        {
+            owner.GiveReward(-1f);
             PoolManager.Instance.Push(this);
         }
     }

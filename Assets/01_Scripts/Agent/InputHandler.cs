@@ -9,7 +9,10 @@ public class InputHandler : MonoSingleton<InputHandler>
 
     public override void Init()
     {
-        controller = GameManager.Instance.PlayerTransform.GetComponent<AgentContoller>();
+        if (GameManager.Instance.PlayerTransform != null)
+        {
+            controller = GameManager.Instance.PlayerTransform.GetComponent<AgentContoller>();
+        }
     }
 
     private void Update()

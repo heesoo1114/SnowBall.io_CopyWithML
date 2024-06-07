@@ -17,7 +17,7 @@ public class CameraController : MonoSingleton<CameraController>
 
     private void Update()
     {
-        if (mainCam != null)
+        if (playerTransform != null)
         {
             Vector3 camPos = new Vector3(playerTransform.position.x, offsetY, playerTransform.position.z + offsetZ);
             mainCam.transform.position = camPos;
