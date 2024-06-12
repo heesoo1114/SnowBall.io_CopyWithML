@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1717852085",
+        "python_version": "3.9.0 (tags/v3.9.0:9cf6752, Oct  5 2020, 15:34:40) [MSC v.1927 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python39\\Scripts\\mlagents-learn D:\\GitHub\\Snowball.io_CopyWithML\\ml-agents-release_20\\config\\ppo\\SnowBall.yaml --run-id=test1 --results-dir=D:\\GitHub\\Snowball.io_CopyWithML\\Results",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.7.1+cu110",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1717852148"
+    },
+    "total": 60.9111905,
+    "count": 1,
+    "self": 0.006589200000000517,
+    "children": {
+        "run_training.setup": {
+            "total": 0.08887219999999996,
+            "count": 1,
+            "self": 0.08887219999999996
+        },
+        "TrainerController.start_learning": {
+            "total": 60.8157291,
+            "count": 1,
+            "self": 9.92000000010762e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 60.8156111,
+                    "count": 1,
+                    "self": 60.8156111
+                },
+                "TrainerController._save_models": {
+                    "total": 1.8799999999430383e-05,
+                    "count": 1,
+                    "self": 1.8799999999430383e-05
+                }
+            }
+        }
+    }
+}

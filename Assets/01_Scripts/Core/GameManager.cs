@@ -8,13 +8,9 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         SetFrameRate();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         Init();   
-    }
-
-    private void Start()
-    {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public override void Init()

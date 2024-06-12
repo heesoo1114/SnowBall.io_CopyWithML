@@ -1,0 +1,29 @@
+{
+    "SnowBall": {
+        "checkpoints": [
+            {
+                "steps": 320,
+                "file_path": "D:\\GitHub\\Snowball.io_CopyWithML\\Results\\test24\\SnowBall\\SnowBall-320.onnx",
+                "reward": null,
+                "creation_time": 1717830531.3926444,
+                "auxillary_file_paths": [
+                    "D:\\GitHub\\Snowball.io_CopyWithML\\Results\\test24\\SnowBall\\SnowBall-320.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 320,
+            "file_path": "D:\\GitHub\\Snowball.io_CopyWithML\\Results\\test24\\SnowBall.onnx",
+            "reward": null,
+            "creation_time": 1717830531.3926444,
+            "auxillary_file_paths": [
+                "D:\\GitHub\\Snowball.io_CopyWithML\\Results\\test24\\SnowBall\\SnowBall-320.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

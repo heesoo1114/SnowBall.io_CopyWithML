@@ -19,18 +19,15 @@ public class SnowArea : MonoBehaviour
     private void Start()
     {
         initScaleSize = transform.localScale;
-        InitArea();
 
-        StartGroundSmaller();
+        // InitArea();
+        // StartGroundSmaller();
     }
 
     public void InitArea()
     {
         transform.localScale = initScaleSize;
-        for (int i = 0; i < 3; i++)
-        {
-            Instantiate(agentObject, agentParentTransform);
-        }
+        // Instantiate(agentObject, agentParentTransform);
     }
 
     public void StartGroundSmaller()
